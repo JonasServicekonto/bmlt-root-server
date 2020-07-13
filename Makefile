@@ -7,15 +7,15 @@ lint-fix:
 deps:
 	composer install --no-dev
 	npm install \
-	  && cp node_modules/@bmlt-enabled/croutonjs/crouton.css main_server/client_interface/html/crouton.css \
-	  && cp node_modules/@bmlt-enabled/croutonjs/crouton.min.css main_server/client_interface/html/crouton.min.css \
-	  && cp node_modules/@bmlt-enabled/croutonjs/crouton.js main_server/client_interface/html/crouton.js \
-	  && cp node_modules/@bmlt-enabled/croutonjs/crouton.min.js main_server/client_interface/html/crouton.min.js \
+	  && mkdir -p main_server/client_interface/html/croutonjs \
+	  && cp node_modules/@bmlt-enabled/croutonjs/*.css main_server/client_interface/html/croutonjs/ \
+	  && cp node_modules/@bmlt-enabled/croutonjs/*.js main_server/client_interface/html/croutonjs/ \
+	  && cp -r node_modules/@bmlt-enabled/croutonjs/templates main_server/client_interface/html/croutonjs/templates \
+	  && cp -r node_modules/@bmlt-enabled/croutonjs/fonts main_server/client_interface/html/croutonjs/fonts
 
 clean:
 	rm -rf main_server/vendor
 	rm -rf node_modules
-	rm -rf main_server/client_interface/html/crouton*.css
-	rm -rf main_server/client_interface/html/crouton*.js
+	rm -rf main_server/client_interface/html/croutonjs
 
 .PHONY: lint deps clean
